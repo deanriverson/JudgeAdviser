@@ -1,3 +1,9 @@
 <h1>
   {{title}}
 </h1>
+
+<ul>
+  <li class="text" *ngFor="let team of teams">
+    #{{team.number}} - {{team.name}}
+  </li>
+</ul>
