@@ -3,7 +3,9 @@
 </h1>
 
 <ul>
-  <li class="text" *ngFor="let team of teams">
+  <li class="text" *ngFor="let team of teams" (click)="onSelect(team)">
     #{{team.number}} - {{team.name}}
   </li>
 </ul>
+
+<ja-team-details [team]="selectedTeam"></ja-team-details>
