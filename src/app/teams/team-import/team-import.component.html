@@ -1,23 +1,28 @@
-<div id="drop-zone" [class.drop-hover]="dropHover" (dragover)="handleDragOver($event)" (dragleave)="handleDragLeave()"
-     (drop)="handleFileSelect($event)">
-  <div>Drop Team .CSV File Here</div>
-</div>
-<ul>
-  <li *ngFor="let f of dropFiles">
-    <strong>{{f.name}}</strong> ({{f.type || 'n/a'}}) - {{f.size}} bytes,
-    last modified: {{f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a'}}
-  </li>
-</ul>
+<error-message [error]="error"></error-message>
 
-<table *ngIf="data">
-  <thead>
-  <tr>
-    <th *ngFor="let header of headers">{{header}}</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let item of data">
-    <td *ngFor="let prop of item">{{prop}}</td>
-  </tr>
-  </tbody>
-</table>
+<drop-target *ngIf="newTeams.length === 0" (filesDropped)="onFilesDropped($event)" prompt="Drop Team .CSV File Here">
+</drop-target>
+
+<!--<div id="drop-zone" [class.drop-hover]="dropHover" (dragover)="handleDragOver($event)" (dragleave)="handleDragLeave()"-->
+     <!--(drop)="handleFileSelect($event)">-->
+  <!--<div>Drop Team .CSV File Here</div>-->
+<!--</div>-->
+<!--<ul>-->
+  <!--<li *ngFor="let f of dropFiles">-->
+    <!--<strong>{{f.name}}</strong> ({{f.type || 'n/a'}}) - {{f.size}} bytes,-->
+    <!--last modified: {{f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a'}}-->
+  <!--</li>-->
+<!--</ul>-->
+
+<!--<table *ngIf="data">-->
+  <!--<thead>-->
+  <!--<tr>-->
+    <!--<th *ngFor="let header of headers">{{header}}</th>-->
+  <!--</tr>-->
+  <!--</thead>-->
+  <!--<tbody>-->
+  <!--<tr *ngFor="let item of data">-->
+    <!--<td *ngFor="let prop of item">{{prop}}</td>-->
+  <!--</tr>-->
+  <!--</tbody>-->
+<!--</table>-->

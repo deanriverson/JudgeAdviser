@@ -1,0 +1,4 @@
+<div class="drop-zone" [class.drop-hover]="dropHover"
+     (dragover)="handleDragOver($event)" (dragleave)="handleDragLeave()" (drop)="handleFileSelect($event)">
+  <div>{{prompt}}</div>
+</div>

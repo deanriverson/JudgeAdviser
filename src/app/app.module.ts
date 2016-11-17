@@ -10,6 +10,8 @@ import { AppRoutingModule, routingComponents } from "./app.routing";
 import { TeamCardComponent } from './teams/team-card/team-card.component';
 import { JudgeCardComponent } from './judges/judge-card/judge-card.component';
 import { JudgeImportComponent } from './judges/judge-import/judge-import.component';
+import { ErrorMessageComponent } from './common/error-message/error-message.component';
+import { DropTargetComponent } from './common/drop-target/drop-target.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC1Jc-F325IBXRdgOb3h20JxJKeuaWt42o",
@@ -24,7 +26,9 @@ export const firebaseConfig = {
     AppComponent,
     routingComponents,
     TeamCardComponent,
-    JudgeCardComponent
+    JudgeCardComponent,
+    ErrorMessageComponent,
+    DropTargetComponent
   ],
   imports: [
     BrowserModule,

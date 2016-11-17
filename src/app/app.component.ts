@@ -1,11 +1,14 @@
 import {Component, OnInit, NgZone} from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import {Team} from "./models/team";
+import {AppStoreService} from "./services/app-store.service";
+import {CsvImportService} from "./services/csv-import.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [AppStoreService, CsvImportService]
 })
 export class AppComponent implements OnInit {
   title = 'Hello JudgeAdvisor';

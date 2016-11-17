@@ -1,6 +1,4 @@
-<div id="error-msg" *ngIf="error">
-  {{error}}
-</div>
+<error-message [error]="error"></error-message>
 
 <div id="import-container">
   <div id="judge-list-container">
@@ -13,10 +11,9 @@
       <button (click)="onCancel()">Cancel</button>
       <judge-card *ngFor="let j of newJudges" [judge]="j"></judge-card>
     </div>
-    <div id="drop-zone" *ngIf="newJudges.length === 0" [class.drop-hover]="dropHover"
-         (dragover)="handleDragOver($event)" (dragleave)="handleDragLeave()" (drop)="handleFileSelect($event)">
-      <div>Drop Judge .CSV File Here</div>
-    </div>
+    <drop-target *ngIf="newJudges.length === 0" (filesDropped)="onFilesDropped($event)"
+                 prompt="Drop Judge .CSV File Here">
+    </drop-target>
   </div>
 </div>
 

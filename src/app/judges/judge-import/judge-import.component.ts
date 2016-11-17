@@ -43,31 +43,14 @@ export class JudgeImportComponent implements OnInit {
     this.newJudges = [];
   }
 
-  handleDragOver(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-    this.dropHover = true;
-    evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
-  }
-
-  handleDragLeave() {
-    this.dropHover = false;
-  }
-
-  handleFileSelect(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-
-    this.dropHover = false;
-    let dropFiles = evt.dataTransfer.files; // FileList object.
-
+  onFilesDropped(files) {
     // let result = Papa.parse("one, two, three, four");
-    this.error = this.verifyDroppedFiles(dropFiles);
+    this.error = this.verifyDroppedFiles(files);
     if (this.error) {
       return;
     }
 
-    Papa.parse(dropFiles[0], {
+    Papa.parse(files[0], {
       complete: (results => this.createJudgesFromData(results))
     });
   }
