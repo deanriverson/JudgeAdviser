@@ -3,6 +3,14 @@
 </button>
 
 <div id="judge-list-container">
-  <judge-card *ngFor="let judge of judges | async" [judge]="judge"></judge-card>
+  <div class="judge-list">
+    <judge-card *ngFor="let judge of robotJudges" [judge]="judge"></judge-card>
+  </div>
+  <div class="judge-list">
+    <judge-card *ngFor="let judge of projectJudges" [judge]="judge"></judge-card>
+  </div>
+  <div class="judge-list">
+    <judge-card *ngFor="let judge of coreJudges" [judge]="judge"></judge-card>
+  </div>
 </div>
 

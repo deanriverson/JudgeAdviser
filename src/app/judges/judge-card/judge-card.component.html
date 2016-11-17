@@ -1,9 +1,10 @@
-<md-card>
-  <div>
-    <md-icon>person</md-icon>
-    <span>{{judge.firstName}} {{judge.lastName}} - {{judge.role}}</span>
+<md-card [style.background-color]="background">
+  <div class="icon">
+    <md-icon svgSrc="{{icon}}" [style.color]="iconColor"></md-icon>
   </div>
-  <div>
-    <span>{{judge.email}}</span>
+  <div class="info">
+    <div>{{judge.firstName}} {{judge.lastName}}</div>
+    <div>{{judge.role}}</div>
+    <div>{{judge.years}} Year{{judge.years !== '1' ? 's' : ''}}</div>
   </div>
 </md-card>

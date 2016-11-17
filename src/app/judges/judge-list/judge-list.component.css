@@ -2,7 +2,15 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  align-content: center;
   height: 90vh;
+}
+
+.judge-list {
+  width: 33%;
+  max-width: 400px;
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 
 button md-icon {

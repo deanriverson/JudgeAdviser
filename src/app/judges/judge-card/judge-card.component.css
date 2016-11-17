@@ -1,4 +1,25 @@
 md-card {
-  height: 100px;
+  display: flex;
   margin: 5px;
 }
+
+md-card .icon {
+  margin-right: 10px;
+}
+
+md-card .info div:first-child {
+  font-size: 125%;
+  color: #222;
+}
+
+md-card .info div {
+  font-size: 90%;
+  color: #888;
+}
+
+md-icon.head-judge {
+  width: 24px;
+  height: 24px;
+  color: goldenrod;
+}
+
