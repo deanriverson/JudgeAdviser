@@ -1,0 +1,41 @@
+<div id="error-msg" *ngIf="error">
+  {{error}}
+</div>
+
+<div id="import-container">
+  <div id="judge-list-container">
+    <judge-card *ngFor="let judge of currentJudges | async" [judge]="judge"></judge-card>
+  </div>
+
+  <div>
+    <div *ngIf="newJudges.length > 0">
+      <button (click)="onSubmit()">Submit</button>
+      <button (click)="onCancel()">Cancel</button>
+      <judge-card *ngFor="let j of newJudges" [judge]="j"></judge-card>
+    </div>
+    <div id="drop-zone" *ngIf="newJudges.length === 0" [class.drop-hover]="dropHover"
+         (dragover)="handleDragOver($event)" (dragleave)="handleDragLeave()" (drop)="handleFileSelect($event)">
+      <div>Drop Judge .CSV File Here</div>
+    </div>
+  </div>
+</div>
+
+<!--<ul>-->
+  <!--<li *ngFor="let f of dropFiles">-->
+    <!--<strong>{{f.name}}</strong> ({{f.type || 'n/a'}}) - {{f.size}} bytes,-->
+    <!--last modified: {{f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a'}}-->
+  <!--</li>-->
+<!--</ul>-->
+
+<!--<table *ngIf="data">-->
+  <!--<thead>-->
+  <!--<tr>-->
+    <!--<th *ngFor="let header of headers">{{header}}</th>-->
+  <!--</tr>-->
+  <!--</thead>-->
+  <!--<tbody>-->
+  <!--<tr *ngFor="let item of data">-->
+    <!--<td *ngFor="let prop of item">{{prop}}</td>-->
+  <!--</tr>-->
+  <!--</tbody>-->
+<!--</table>-->

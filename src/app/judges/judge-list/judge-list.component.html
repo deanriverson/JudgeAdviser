@@ -1,0 +1,8 @@
+<button md-fab routerLink="/judge/import" style="position: absolute; right: 40px; top: 30px;" title="Import Judges">
+  <md-icon>cloud_upload</md-icon>
+</button>
+
+<div id="judge-list-container">
+  <judge-card *ngFor="let judge of judges | async" [judge]="judge"></judge-card>
+</div>
+

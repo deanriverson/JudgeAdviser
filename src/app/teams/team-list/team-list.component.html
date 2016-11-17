@@ -1,0 +1,5 @@
+<div id="team-list-container">
+  <team-card *ngFor="let team of teams | async" (click)="onSelect(team)" [team]="team"></team-card>
+</div>
+
+<!--<ja-team-details [team]="selectedTeam"></ja-team-details>-->

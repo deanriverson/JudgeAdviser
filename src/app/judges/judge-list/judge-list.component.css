@@ -1,0 +1,11 @@
+#judge-list-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 90vh;
+}
+
+button md-icon {
+  font-size: 36px;
+  width: 36px;
+}
