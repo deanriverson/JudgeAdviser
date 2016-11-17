@@ -1,11 +1,8 @@
-<h1>
-  {{title}}
-</h1>
+<md-toolbar color="primary" class="md-elevation-z4" style="margin-bottom: 20px;">
+  <button md-icon-button>
+    <md-icon>menu</md-icon>
+  </button>
+  <span>Judge Adviser</span>
+</md-toolbar>
 
-<ul>
-  <li class="text" *ngFor="let team of teams" (click)="onSelect(team)">
-    #{{team.number}} - {{team.name}}
-  </li>
-</ul>
-
-<ja-team-details [team]="selectedTeam"></ja-team-details>
+<router-outlet></router-outlet>

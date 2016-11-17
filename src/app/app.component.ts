@@ -1,6 +1,6 @@
 import {Component, OnInit, NgZone} from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
-import {Team} from "./team";
+import {Team} from "./models/team";
 
 @Component({
   selector: 'app-root',
@@ -9,20 +9,27 @@ import {Team} from "./team";
 })
 export class AppComponent implements OnInit {
   title = 'Hello JudgeAdvisor';
-  teams: Team[];
+  // teams: Team[];
   selectedTeam: Team;
 
-  constructor(private af: AngularFire, private zone:NgZone) {
+  teams: FirebaseListObservable<any>;
+
+  constructor(private af: AngularFire) {
+    this.teams = af.database.list('/teams');
+
+    this.teams.push(new Team(1, "One", "First Org"));
+    this.teams.push(new Team(2, "Two", "Second Org"));
+    this.teams.push(new Team(3, "Three", "Third Org"));
   }
 
   ngOnInit(): void {
     // this.teams = this.af.database.list('/teams');
-    this.af.database.list('/teams').subscribe(teams => {
-      this.zone.run(() => {
-        console.log('update', teams);
-        this.teams = teams;
-      });
-    });
+    // this.af.database.list('/teams').subscribe(teams => {
+    //   this.zone.run(() => {
+    //     console.log('update from zone', teams);
+    //     this.teams = teams;
+    //   });
+    // });
     // let dbRef = this.af.database.list('/teams');
     // dbRef.subscribe(items => {
     //   console.log('got update', items);
