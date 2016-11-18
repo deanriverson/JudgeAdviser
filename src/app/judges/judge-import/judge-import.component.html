@@ -7,8 +7,12 @@
 
   <div>
     <div *ngIf="newJudges.length > 0">
-      <button (click)="onSubmit()">Submit</button>
-      <button (click)="onCancel()">Cancel</button>
+      <button md-mini-fab (click)="onSubmit()" style="position: fixed; top: 80px; right: 10px;">
+        <md-icon>cloud_upload</md-icon>
+      </button>
+      <button md-mini-fab (click)="onCancel()" style="position: fixed; top: 140px; right: 10px;">
+        <md-icon>close</md-icon>
+      </button>
       <judge-card *ngFor="let j of newJudges" [judge]="j"></judge-card>
     </div>
     <drop-target *ngIf="newJudges.length === 0" (filesDropped)="onFilesDropped($event)"

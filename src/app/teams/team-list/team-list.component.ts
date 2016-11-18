@@ -1,8 +1,6 @@
 import {Component, OnInit} from "@angular/core";
-import {FirebaseListObservable} from "angularfire2";
 import {Team} from "../../models/team";
 import {AppStoreService} from "../../services/app-store.service";
-import * as _ from "lodash";
 
 @Component({
   selector: 'app-team-list',
@@ -12,10 +10,12 @@ import * as _ from "lodash";
 })
 export class TeamListComponent implements OnInit {
   selectedTeam: Team;
-  teams: FirebaseListObservable<any>;
+  teams: Team[];
 
   constructor(private store: AppStoreService) {
-    this.teams = store.teams;
+    store.teams.subscribe(teams => {
+      this.teams = teams.sort((a,b) => a.id - b.id);
+    });
   }
 
   ngOnInit() {

@@ -1,5 +1,8 @@
-<div id="team-list-container">
-  <team-card *ngFor="let team of teams | async" (click)="onSelect(team)" [team]="team"></team-card>
-</div>
+<button md-fab routerLink="/team/import" style="position: fixed; right: 40px; top: 25px; z-index: 200;"
+        title="Import Teams">
+  <md-icon>cloud_upload</md-icon>
+</button>
 
-<!--<ja-team-details [team]="selectedTeam"></ja-team-details>-->
+<div id="team-list-container">
+  <team-card *ngFor="let team of teams" (click)="onSelect(team)" [team]="team"></team-card>
+</div>
