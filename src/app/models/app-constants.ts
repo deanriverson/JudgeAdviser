@@ -6,4 +6,9 @@ export interface AppConstants {
   judgeImportColumnRole: number;
   judgeImportColumnYears: number;
   judgeImportColumnTeamAffiliation: number;
+
+  robotDesignNominations: number;
+  projectNominations: number;
+  coreValuesNominations: number;
+  judgesAwardNominations: number;
 }
