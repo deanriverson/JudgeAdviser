@@ -1,0 +1,32 @@
+<error-message [error]="error"></error-message>
+
+<div id="import-container">
+  <ul class="team-list-container">
+    <li *ngFor="let team of currentTeams">
+      <span>{{team.performanceRank}}. #{{team.id}}</span>
+      <span *ngFor="let score of team.roundScores">{{score || 0}} </span>
+      <span>{{team.maxScore || 0}}</span>
+    </li>
+  </ul>
+
+  <div [ngSwitch]="newTeams.length > 0">
+    <div *ngSwitchCase="true">
+      <button md-mini-fab (click)="onSubmit()" style="position: fixed; top: 80px; right: 10px;">
+        <md-icon>cloud_upload</md-icon>
+      </button>
+      <button md-mini-fab (click)="onCancel()" style="position: fixed; top: 140px; right: 10px;">
+        <md-icon>close</md-icon>
+      </button>
+      <ul class="team-list-container">
+        <li *ngFor="let team of newTeams">
+          <span>{{team.performanceRank}}. #{{team.id}}</span>
+          <span *ngFor="let score of team.roundScores">{{score || 0}} </span>
+          <span>{{team.maxScore || 0}}</span>
+        </li>
+      </ul>
+    </div>
+
+    <drop-target *ngSwitchCase="false" (filesDropped)="onFilesDropped($event)" prompt="Drop Score .CSV File Here">
+    </drop-target>
+  </div>
+</div>

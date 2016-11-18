@@ -1,8 +1,42 @@
-<div style="display: flex;">
-  <div class="award-list">
+<div class="deliberation-container">
+  <div class="deliberation-column">
+    <div>
+      <span>Awards</span>
+    </div>
+
     <ul>
-      <li *ngFor="let a of awards">{{a.category}} {{a.ordinal}} Place</li>
+      <li *ngFor="let a of awards">{{a.description}}</li>
     </ul>
+  </div>
+
+  <div class="deliberation-column nominations">
+    <div>
+      <span>Nominations</span>
+    </div>
+
+    <ul>
+      <li *ngFor="let a of awards">{{a.description}}</li>
+    </ul>
+  </div>
+
+  <div class="deliberation-column teams">
+    <div>
+      <span>Team List</span>
+      <button md-button (click)="setTeamListDisplay(1)">#</button>
+      <button md-button (click)="setTeamListDisplay(2)">P</button>
+      <button md-button (click)="setTeamListDisplay(3)">J</button>
+    </div>
+    <div [ngSwitch]="teamListDisplay">
+      <ul *ngSwitchCase="1">
+        <li *ngFor="let t of sortedTeams" [style.color]="t.color">{{t.id}}</li>
+      </ul>
+
+      <robot-performance-list *ngSwitchCase="2"></robot-performance-list>
+
+      <div *ngSwitchCase="3">
+        Teams by judged rank
+      </div>
+    </div>
   </div>
 
 </div>

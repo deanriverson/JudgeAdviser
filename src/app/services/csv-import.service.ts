@@ -1,7 +1,7 @@
 ///<reference path="../models/team.ts"/>
 import {Injectable} from "@angular/core";
 import {AppStoreService} from "./app-store.service";
-import {Team} from "../models/team";
+import {Team, FirebaseTeam} from "../models/team";
 import * as Papa from "papaparse";
 import * as _ from "lodash";
 import {ColorService} from "./color.service";
@@ -38,7 +38,14 @@ export class CsvImportService {
       Papa.parse(file, {
         complete: (results => this.processTeamResults(results, resolve, reject))
       });
-      return [];
+    });
+  }
+
+  importTeamScoresFromFile(file: File, teams: Team[]): Promise<Team[]> {
+    return new Promise((resolve, reject) => {
+      Papa.parse(file, {
+        complete: (results => this.processTeamScoreResults(teams, results, resolve, reject))
+      });
     });
   }
 
@@ -56,14 +63,46 @@ export class CsvImportService {
     }
   }
 
+  private processTeamScoreResults(teams:Team[], results, resolve, reject) {
+    if (results.errors.length > 0) {
+      reject(this.buildErrorStrings(results.errors));
+    }
+
+    let findTeamById = (id:number) => _.find(teams, t => t.id === id);
+
+    try {
+      // First row is headers
+      _.each(results.data.slice(1), row => {
+        let team = findTeamById(Number(row[1]));
+        if (!team) throw "Score file contained unknown team " + row[1];
+        team.performanceRank = Number(row[0]);
+        team.setRoundScores(_.map(row.slice(4, -1), score => +score));
+      });
+
+      resolve(teams);
+    } catch (e) {
+      reject(e);
+    }
+  }
+
   private createTeamsFromRows(rows: string[][], teamCount): Team[] {
     if (rows.length < teamCount) {
       console.log(`Warning: team count should be ${teamCount} but there are only ${rows.length} rows left in file`);
     }
 
     return _(rows)
-      .map(row => (row.length < 2 || !row[0] || !row[1]) ? null :
-        new Team(Number(row[0]), row[1], this.colorService.randomColor()))
+      .map(row => {
+        if (row.length < 2 || !row[0] || !row[1]) {
+          return null;
+        } else {
+          return new Team({
+            id: Number(row[0]),
+            name: row[1],
+            color: this.colorService.randomColor(),
+            organization: ''
+          } as FirebaseTeam);
+        }
+      })
       .compact()
       .value();
   }

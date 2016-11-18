@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Team} from "../../models/team";
+import {Team, FirebaseTeam} from "../../models/team";
 import {AppStoreService} from "../../services/app-store.service";
 
 @Component({
@@ -9,13 +9,10 @@ import {AppStoreService} from "../../services/app-store.service";
   providers: [AppStoreService]
 })
 export class TeamListComponent implements OnInit {
-  selectedTeam: Team;
   teams: Team[];
 
   constructor(private store: AppStoreService) {
-    store.teamsObservable.subscribe(teams => {
-      this.teams = teams.sort((a,b) => a.id - b.id);
-    });
+    store.teamsObservable.subscribe(teams => this.teams = teams.map(t => new Team(t as FirebaseTeam)));
   }
 
   ngOnInit() {

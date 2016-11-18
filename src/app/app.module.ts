@@ -15,6 +15,8 @@ import { DropTargetComponent } from './common/drop-target/drop-target.component'
 import { TournamentInfoComponent } from './tournament/tournament-info/tournament-info.component';
 import { DeliberationComponent } from './deliberation/deliberation/deliberation.component';
 import { AwardSlotComponent } from './deliberation/award-slot/award-slot.component';
+import { RobotPerformanceListComponent } from './deliberation/robot-performance-list/robot-performance-list.component';
+import { ScoresComponent } from './deliberation/scores/scores.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC1Jc-F325IBXRdgOb3h20JxJKeuaWt42o",
@@ -34,7 +36,9 @@ export const firebaseConfig = {
     DropTargetComponent,
     TournamentInfoComponent,
     DeliberationComponent,
-    AwardSlotComponent
+    AwardSlotComponent,
+    RobotPerformanceListComponent,
+    ScoresComponent
   ],
   imports: [
     BrowserModule,

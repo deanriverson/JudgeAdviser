@@ -3,7 +3,7 @@ import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from "ang
 import {AppConstants} from "../models/app-constants";
 import {AwardCategory} from "../models/award-category";
 import {TournamentInfo} from "../models/tournament-info";
-import {Team} from "../models/team";
+import {Team, FirebaseTeam} from "../models/team";
 import {Award, FirebaseAward} from "../models/award";
 
 import * as _ from 'lodash';
@@ -26,7 +26,7 @@ export class AppStoreService {
     this._tournamentInfoObservable = af.database.object('/tournamentInfo');
 
     this._teamsObservable = af.database.list('/teams');
-    this._teamsObservable.subscribe(teams => this._teams = teams);
+    this._teamsObservable.subscribe(teams => this._teams = _.map(teams, t => new Team(t as FirebaseTeam)));
 
     this._judgesObservable = af.database.list('/judges');
 
@@ -74,6 +74,10 @@ export class AppStoreService {
 
   get awards(): Award[] {
     return this._awards;
+  }
+
+  get teams(): Team[] {
+    return this._teams.slice(0);
   }
 
   findTeamByNumber(teamNum: number): Team {
