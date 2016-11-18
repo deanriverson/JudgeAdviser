@@ -1,9 +1,8 @@
 import {Component} from "@angular/core";
 import {AppStoreService} from "../../services/app-store.service";
 import {TournamentInfo} from "../../models/tournament-info";
-import {FirebaseListObservable} from "angularfire2";
 import {Award} from "../../models/award";
-import * as _ from 'lodash';
+import * as _ from "lodash";
 
 @Component({
   selector: 'tournament-info',
@@ -30,7 +29,7 @@ export class TournamentInfoComponent {
     this.store.awards.remove();
     this.store.awardCategories.subscribe(categories => {
       _.each(categories, cat => {
-        _.times(cat.numGiven, rank => this.store.awards.push(new Award(cat.name, rank + 1)));
+        _.times(cat.numGiven, rank => this.store.awards.push(new Award(cat.name, rank + 1).toFirebase()));
       })
     });
   }

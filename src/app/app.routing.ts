@@ -7,9 +7,11 @@ import {JudgeListComponent} from "./judges/judge-list/judge-list.component";
 import {HomeComponent} from "./home/home.component";
 import {JudgeImportComponent} from "./judges/judge-import/judge-import.component";
 import {TournamentInfoComponent} from "./tournament/tournament-info/tournament-info.component";
+import {DeliberationComponent} from "./deliberation/deliberation/deliberation.component";
 
 const routes: Routes = [
   { path: 'tournament',   component: TournamentInfoComponent },
+  { path: 'deliberation', component: DeliberationComponent },
 
   { path: 'team',         component: TeamListComponent },
   { path: 'team/import',  component: TeamImportComponent },
@@ -29,7 +31,9 @@ export class AppRoutingModule {}
 
 export const routingComponents = [
   HomeComponent,
+
   TournamentInfoComponent,
+  DeliberationComponent,
 
   TeamListComponent,
   TeamImportComponent,

@@ -13,6 +13,8 @@ import { JudgeImportComponent } from './judges/judge-import/judge-import.compone
 import { ErrorMessageComponent } from './common/error-message/error-message.component';
 import { DropTargetComponent } from './common/drop-target/drop-target.component';
 import { TournamentInfoComponent } from './tournament/tournament-info/tournament-info.component';
+import { DeliberationComponent } from './deliberation/deliberation/deliberation.component';
+import { AwardSlotComponent } from './deliberation/award-slot/award-slot.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC1Jc-F325IBXRdgOb3h20JxJKeuaWt42o",
@@ -30,7 +32,9 @@ export const firebaseConfig = {
     JudgeCardComponent,
     ErrorMessageComponent,
     DropTargetComponent,
-    TournamentInfoComponent
+    TournamentInfoComponent,
+    DeliberationComponent,
+    AwardSlotComponent
   ],
   imports: [
     BrowserModule,
