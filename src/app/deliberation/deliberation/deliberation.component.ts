@@ -11,8 +11,8 @@ export class DeliberationComponent implements OnInit {
   private awards: Award[];
 
   constructor(private store:AppStoreService) {
-    store.awards.subscribe(awards => {
-      this.awards = awards.map(Award.fromFirebase);
+    store.awardsObservable.subscribe(awards => {
+      // this.awardsObservable = awardsObservable.map(Award.fromFirebase);
     });
   }
 

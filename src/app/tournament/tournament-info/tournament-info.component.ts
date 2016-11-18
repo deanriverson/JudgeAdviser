@@ -1,8 +1,9 @@
 import {Component} from "@angular/core";
 import {AppStoreService} from "../../services/app-store.service";
 import {TournamentInfo} from "../../models/tournament-info";
-import {Award} from "../../models/award";
+import {Award, FirebaseAward} from "../../models/award";
 import * as _ from "lodash";
+import {AwardCategory} from "../../models/award-category";
 
 @Component({
   selector: 'tournament-info',
@@ -14,23 +15,25 @@ export class TournamentInfoComponent {
   private tournamentInfo: TournamentInfo = new TournamentInfo();
 
   constructor(private store: AppStoreService) {
-    store.awards.subscribe(awards => this.awards = awards);
-
-    store.tournamentInfo.subscribe(info => {
+    store.awardsObservable.subscribe(awards => this.awards = store.awards);
+    store.tournamentInfoObservable.subscribe(info => {
       this.tournamentInfo = info.$key ? info : this.tournamentInfo;
     });
   }
 
   onSaveTournamentInfo() {
-    this.store.tournamentInfo.set(this.tournamentInfo);
+    this.store.tournamentInfoObservable.set(this.tournamentInfo);
   }
 
   onCreateAwards() {
-    this.store.awards.remove();
-    this.store.awardCategories.subscribe(categories => {
-      _.each(categories, cat => {
-        _.times(cat.numGiven, rank => this.store.awards.push(new Award(cat.name, rank + 1).toFirebase()));
-      })
+    this.store.awardsObservable.remove();
+    _.each(this.store.awardCategories, cat => {
+      let awardCreator = this.getAwardCreatorForCategory(cat);
+      _.times(cat.numGiven, awardCreator);
     });
+  }
+
+  private getAwardCreatorForCategory(cat:AwardCategory): (number)=>void {
+    return rank => this.store.awardsObservable.push({category: cat.name, rank: rank+1, script: '', winner: ''} as FirebaseAward);
   }
 }

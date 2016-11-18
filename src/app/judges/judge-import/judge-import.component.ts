@@ -23,11 +23,11 @@ export class JudgeImportComponent implements OnInit {
   private error = "";
 
   constructor(private store: AppStoreService) {
-    store.appConstants.subscribe(snapshot => {
+    store.appConstantsObservable.subscribe(snapshot => {
       this.appConstants = snapshot;
       this.createJudgeHeaderArray();
     });
-    this.currentJudges = store.judges;
+    this.currentJudges = store.judgesObservable;
   }
 
   ngOnInit() {

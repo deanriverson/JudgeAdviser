@@ -17,7 +17,7 @@ export class JudgeListComponent implements OnInit {
   constructor(private store: AppStoreService) {}
 
   ngOnInit() {
-    this.store.judges.subscribe(items => {
+    this.store.judgesObservable.subscribe(items => {
       let judges:Judge[] = items;
       this.robotJudges = _.filter(judges, j => j.role.indexOf('Robot') >= 0).sort(this._compareFn);
       this.projectJudges = _.filter(judges, j => j.role.indexOf('Project') >= 0).sort(this._compareFn);

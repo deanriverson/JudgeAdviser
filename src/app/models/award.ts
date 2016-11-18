@@ -1,3 +1,4 @@
+import {AwardCategory} from "./award-category";
 export interface FirebaseAward {
   category: string,
   rank: number,
@@ -5,45 +6,55 @@ export interface FirebaseAward {
   script: string
 }
 
-export class Award implements FirebaseAward {
+export class Award {
   private static readonly ORDINALS = [
     "Zero", "First", "Second", "Third", "Fourth", "Fifth",
     "Sixth", "Seventh", "Eighth", "Ninth", "Tenth"
   ];
 
-  static fromFirebase(obj:FirebaseAward): Award {
-    let a = new Award(obj.category, obj.rank)
-    a.script = obj.script;
-    a.winner = obj.winner;
-    return a;
+  constructor(private fbAward: FirebaseAward, private category: AwardCategory) {}
+
+  get categoryName(): string {
+    return this.category.name;
   }
 
-  private _script = "";
-  private _winner = "";
-
-  constructor(readonly category: string, readonly rank: number) {}
+  get rank(): number {
+    return this.fbAward.rank;
+  }
 
   get script(): string {
-    return this._script;
+    return this.fbAward.script;
   }
 
   set script(value: string) {
-    this._script = value;
+    this.fbAward.script = value;
   }
 
   get winner(): string {
-    return this._winner;
+    return this.fbAward.winner;
   }
 
   set winner(value: string) {
-    this._winner = value;
+    this.fbAward.winner = value;
   }
 
   get ordinal(): string {
     return Award.ORDINALS[this.rank];
   }
 
+  get awardCategory(): AwardCategory {
+    return this.category;
+  }
+
+  get description(): string {
+    let desc = this.categoryName;
+    if (this.category.numGiven > 1) {
+      desc += ` - ${this.ordinal} Place`;
+    }
+    return desc;
+  }
+
   toFirebase():FirebaseAward {
-    return {category: this.category, rank: this.rank, script: this.script, winner: this.winner};
+    return this.fbAward;
   }
 }

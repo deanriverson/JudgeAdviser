@@ -16,7 +16,7 @@ export class CsvImportService {
   private appConstants;
 
   constructor(store:AppStoreService, private colorService:ColorService) {
-    store.appConstants.subscribe(obj => this.appConstants = obj);
+    store.appConstantsObservable.subscribe(obj => this.appConstants = obj);
   }
 
   verifyDroppedFiles(dropFiles: FileList): Promise<File> {

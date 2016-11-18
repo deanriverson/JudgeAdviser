@@ -13,7 +13,7 @@ export class TeamListComponent implements OnInit {
   teams: Team[];
 
   constructor(private store: AppStoreService) {
-    store.teams.subscribe(teams => {
+    store.teamsObservable.subscribe(teams => {
       this.teams = teams.sort((a,b) => a.id - b.id);
     });
   }

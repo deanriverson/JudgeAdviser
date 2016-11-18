@@ -7,12 +7,15 @@
       <button md-raised-button (click)="onSaveTournamentInfo()">Save</button>
     </div>
 
-    <div>
-      <button md-raised-button (click)="onCreateAwards()">Create Awards</button>
+    <div style="margin-top: 20px;">
+      <span style="font-weight: bold;">Awards</span>
+      <ul style="padding: 0;margin: 1em 0;list-style-type: none;">
+        <li *ngFor="let a of awards">{{a.description}}: {{a.winner}}</li>
+      </ul>
     </div>
 
-    <ul>
-      <li *ngFor="let a of awards">{{a.category}} {{a.rank}}: {{a.winner}}</li>
-    </ul>
+    <div>
+      <button md-raised-button (click)="onCreateAwards()">Clear Awards</button>
+    </div>
   </md-card>
 </div>

@@ -16,7 +16,7 @@ export class TeamImportComponent {
   private currentTeams: FirebaseListObservable<Team>;
 
   constructor(private importService: CsvImportService, store: AppStoreService) {
-    this.currentTeams = store.teams;
+    this.currentTeams = store.teamsObservable;
   }
 
   onSubmit() {
