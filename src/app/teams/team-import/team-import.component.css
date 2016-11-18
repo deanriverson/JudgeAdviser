@@ -1,16 +1,13 @@
-#drop-zone {
-  width: 300px;
-  height: 200px;
-  border: 5px dashed #BBB;
-  border-radius: 20px;
+#import-container {
+  min-width: 80%;
+  max-width: 1180px;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 150%;
-  color: #aaaaaa;
+  justify-content: space-around;
 }
 
-#drop-zone.drop-hover {
-  background-color: #ddffdd;
-  border-color: #88aa88;
+#import-container > div {
+  min-width: 35%;
+  max-width: 580px;
+  flex-grow: 1;
 }

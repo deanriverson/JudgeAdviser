@@ -1,3 +1,8 @@
-<md-card>
-  #{{team.id}} - {{team.name}}
+<md-card [style.backgroundColor]="backgroundColor">
+  <div class="icon">
+    <md-icon svgSrc="/assets/block.svg" [style.color]="team.color"></md-icon>
+  </div>
+  <div class="info">
+    #{{team.id}} - {{team.name}}
+  </div>
 </md-card>

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from "@angular/core";
 import {CsvImportService} from "../../services/csv-import.service";
 import {Team} from "../../models/team";
+import {AppStoreService} from "../../services/app-store.service";
+import {FirebaseListObservable} from "angularfire2";
 
 @Component({
   selector: 'app-team-import',
@@ -8,25 +10,29 @@ import {Team} from "../../models/team";
   styleUrls: ['team-import.component.css'],
   providers: [CsvImportService]
 })
-export class TeamImportComponent implements OnInit {
+export class TeamImportComponent {
   private error = "";
-  private dropFiles: [File];
-  private dropHover = false;
-  private headers: [string];
-  private data: [[string]];
   private newTeams: Team[] = [];
+  private currentTeams: FirebaseListObservable<Team>;
 
-  constructor(private importService: CsvImportService) {}
+  constructor(private importService: CsvImportService, store: AppStoreService) {
+    this.currentTeams = store.teams;
+  }
 
-  ngOnInit() {
+  onSubmit() {
+    this.currentTeams.remove();
+    this.newTeams.forEach(t => this.currentTeams.push(t));
+    this.newTeams = [];
+  }
+
+  onCancel() {
+    this.newTeams = [];
   }
 
   onFilesDropped(files) {
-    try {
-      let file = this.importService.verifyDroppedFiles(files);
-      let teams = this.importService.importTeamsFromFile(file);
-    } catch (e) {
-      this.error = e;
-    }
+    this.importService.verifyDroppedFiles(files)
+      .then(file => this.importService.importTeamsFromFile(file))
+      .then(teams => this.newTeams = teams)
+      .catch(reason => this.error = reason);
   }
 }

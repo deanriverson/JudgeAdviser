@@ -1,5 +1,16 @@
 md-card {
-  width: 280px;
-  height: 100px;
   margin: 5px;
+  display: flex;
+  align-content: center;
+}
+
+md-card md-icon {
+  width: 48px;
+  height: 48px;
+  margin-right: 16px;
+}
+
+md-card .info {
+  font-size: 125%;
+  align-self: center;
 }
