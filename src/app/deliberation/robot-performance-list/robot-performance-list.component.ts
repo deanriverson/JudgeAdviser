@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Team} from "../../models/team";
 import {AppStoreService} from "../../services/app-store.service";
+import * as _ from 'lodash';
 
 @Component({
   selector: 'robot-performance-list',
@@ -10,10 +11,14 @@ import {AppStoreService} from "../../services/app-store.service";
 export class RobotPerformanceListComponent implements OnInit {
   private teams: Team[];
 
-  constructor(store:AppStoreService) {
-    store.teamsObservable.subscribe(teams => this.teams = teams);
+  constructor(store: AppStoreService) {
+    store.teamsObservable.subscribe(teams => {
+      this.teams = teams
+        .map(t => new Team(t))
+        .sort((a, b) => a.performanceRank - b.performanceRank)
+    });
   }
 
-    ngOnInit() {
+  ngOnInit() {
   }
 }

@@ -1,0 +1,22 @@
+md-card {
+  margin: 5px;
+  padding: 4px;
+}
+
+.card-root {
+  display: flex;
+  align-content: center;
+}
+
+.card-root md-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.card-root .info {
+  font-size: 90%;
+  align-self: center;
+  flex-grow: 1;
+}
+

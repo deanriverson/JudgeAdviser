@@ -79,12 +79,24 @@ export class Team {
     return this.fbTeam.nominations.robot;
   }
 
+  set robotNomination(value: number) {
+    this.fbTeam.nominations.robot = value;
+  }
+
   get projectNomination(): number {
     return this.fbTeam.nominations.project;
   }
 
+  set projectNomination(value: number) {
+    this.fbTeam.nominations.project = value;
+  }
+
   get coreValuesNomination(): number {
     return this.fbTeam.nominations.coreValues;
+  }
+
+  set coreValuesNomination(value: number) {
+    this.fbTeam.nominations.coreValues = value;
   }
 
   get judgingScore(): number {

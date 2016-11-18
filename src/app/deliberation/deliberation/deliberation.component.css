@@ -21,11 +21,6 @@
 }
 
 .deliberation-column.teams {
-
-}
-
-ul {
-  padding: 0;
-  margin: 1em 0;
-  list-style-type: none;
+  overflow: scroll;
+  max-width: 500px;
 }

@@ -26,17 +26,11 @@
       <button md-button (click)="setTeamListDisplay(2)">P</button>
       <button md-button (click)="setTeamListDisplay(3)">J</button>
     </div>
-    <div [ngSwitch]="teamListDisplay">
-      <ul *ngSwitchCase="1">
-        <li *ngFor="let t of sortedTeams" [style.color]="t.color">{{t.id}}</li>
-      </ul>
 
+    <div class="team-list-container" [ngSwitch]="teamListDisplay">
+      <deliberation-team-list *ngSwitchCase="1"></deliberation-team-list>
       <robot-performance-list *ngSwitchCase="2"></robot-performance-list>
-
-      <div *ngSwitchCase="3">
-        Teams by judged rank
-      </div>
+      <judging-scores-list *ngSwitchCase="3"></judging-scores-list>
     </div>
   </div>
-
 </div>

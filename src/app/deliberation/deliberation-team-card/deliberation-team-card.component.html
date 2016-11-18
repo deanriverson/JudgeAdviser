@@ -1,0 +1,32 @@
+<md-card [style.backgroundColor]="team.backgroundColor" [ngSwitch]="cardType">
+  <div class="card-root" *ngSwitchCase="'general'">
+    <div class="icon">
+      <md-icon svgSrc="/assets/block.svg" [style.color]="team.color"></md-icon>
+    </div>
+    <div class="info">
+      #{{team.id}} - {{team.name}}
+    </div>
+  </div>
+
+  <div class="card-root" *ngSwitchCase="'performance'">
+    <div class="info">
+      <span>{{team.performanceRank}}. #{{team.id}} - {{team.name}}</span>
+    </div>
+    <div class="scores">
+      <span *ngFor="let score of team.roundScores">{{score || 0}} </span>
+      <span><strong>{{team.maxScore || 0}}</strong></span>
+    </div>
+  </div>
+
+  <div class="card-root" *ngSwitchCase="'judging'">
+    <div class="info">
+      <span>{{rank}}. #{{team.id}} - {{team.name}}</span>
+    </div>
+    <div class="scores">
+      <span>{{team.robotNomination}}</span>
+      <span>{{team.projectNomination}}</span>
+      <span>{{team.coreValuesNomination}}</span>
+      <span><strong>{{team.judgingScore}}</strong></span>
+    </div>
+  </div>
+</md-card>
