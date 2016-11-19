@@ -11,5 +11,21 @@ body {
   height: 99vh;
   margin: 0;
   padding-top: 70px;
-  background-color: #eee;
+  background-color: #ddd;
+}
+
+.placeholder {
+  background: #ddd url("/assets/gears.svg") no-repeat center;
+  background-size: 500px 500px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 90vh;
+}
+
+.placeholder div {
+  padding-top: 200px;
+  align-self: flex-start;
+  font-size: 400%;
+  color: #888;
 }

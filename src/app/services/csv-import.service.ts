@@ -74,8 +74,16 @@ export class CsvImportService {
     try {
       // First row is headers
       _.each(results.data.slice(1), row => {
-        let team = findTeamById(Number(row[1]));
-        if (!team) throw "Score file contained unknown team " + row[1];
+        let teamId = Number(row[1]);
+        if (isNaN(teamId)) {
+          return;
+        }
+
+        let team = findTeamById(teamId);
+        if (team === undefined) {
+          throw "Score file contained unknown team " + teamId;
+        }
+
         team.performanceRank = Number(row[0]);
         team.setRoundScores(_.map(row.slice(4, -1), score => +score));
       });

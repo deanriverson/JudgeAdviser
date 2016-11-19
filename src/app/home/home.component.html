@@ -1,10 +1,23 @@
-<div>
-  <button md-raised-button (click)="onLogin()">Login</button>
-  <button md-raised-button (click)="onLogout()">Logout</button>
-</div>
-<div>
-  <a routerLink="tournament">Tournament Info</a>
-  <a routerLink="deliberation">Deliberation</a>
-  <a routerLink="team">Teams</a>
-  <a routerLink="judge">Judges</a>
+<div class="home-container">
+  <div class="link-container">
+    <a routerLink="tournament" class="link info">
+      <md-icon>info_outline</md-icon>
+    </a>
+
+    <a routerLink="deliberation" class="link deliberation">
+      <md-icon>stars</md-icon>
+    </a>
+    <a routerLink="team" class="link team">
+      <md-icon>people</md-icon>
+    </a>
+
+    <a routerLink="judge" class="link judge">
+      <md-icon>gavel</md-icon>
+    </a>
+  </div>
+
+  <div style="position: fixed; bottom: 10px; right: 10px;">
+    <button md-raised-button (click)="onLogin()">Login</button>
+    <button md-raised-button (click)="onLogout()">Logout</button>
+  </div>
 </div>
