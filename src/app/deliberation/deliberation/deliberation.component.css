@@ -13,6 +13,7 @@
   margin: 2px;
   padding: 2px 10px;
   box-shadow: #aaa 0px 2px 4px 0px;
+  overflow: scroll;
 }
 
 .deliberation-column.nominations {
@@ -21,6 +22,5 @@
 }
 
 .deliberation-column.teams {
-  overflow: scroll;
   max-width: 500px;
 }
