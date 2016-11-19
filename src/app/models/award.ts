@@ -1,5 +1,7 @@
 import {AwardCategory} from "./award-category";
 export interface FirebaseAward {
+  $key: string;
+
   category: string,
   rank: number,
   winner: string,

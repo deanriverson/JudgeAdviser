@@ -12,7 +12,7 @@ import * as _ from 'lodash';
 })
 export class DeliberationComponent implements OnInit {
   private awards: Award[];
-  private teams: Team[];
+  private teams: Team[] = [];
   private sortedTeams: Team[];
   private teamListDisplay: number;
 

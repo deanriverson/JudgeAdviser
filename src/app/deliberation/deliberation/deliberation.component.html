@@ -1,12 +1,6 @@
 <div class="deliberation-container">
   <div class="deliberation-column">
-    <div>
-      <span>Awards</span>
-    </div>
-
-    <ul>
-      <li *ngFor="let a of awards">{{a.description}}</li>
-    </ul>
+    <award-list></award-list>
   </div>
 
   <div class="deliberation-column nominations">
@@ -14,9 +8,11 @@
       <span>Nominations</span>
     </div>
 
-    <ul>
-      <li *ngFor="let a of awards">{{a.description}}</li>
-    </ul>
+    <div style="display: flex;">
+      <nomination-list category="robot" [count]="10" style="flex-grow: 1;"></nomination-list>
+      <nomination-list category="project" [count]="10" style="flex-grow: 1;"></nomination-list>
+      <nomination-list category="coreValues" [count]="10" style="flex-grow: 1;"></nomination-list>
+    </div>
   </div>
 
   <div class="deliberation-column teams">

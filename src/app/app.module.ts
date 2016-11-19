@@ -20,6 +20,9 @@ import { ScoresComponent } from './deliberation/scores/scores.component';
 import { DeliberationTeamCardComponent } from './deliberation/deliberation-team-card/deliberation-team-card.component';
 import { DeliberationTeamListComponent } from './deliberation/deliberation-team-list/deliberation-team-list.component';
 import { JudgingScoresListComponent } from './deliberation/judging-scores-list/judging-scores-list.component';
+import { NominationCardComponent } from './deliberation/nomination-card/nomination-card.component';
+import { NominationListComponent } from './deliberation/nomination-list/nomination-list.component';
+import { AwardListComponent } from './deliberation/award-list/award-list.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC1Jc-F325IBXRdgOb3h20JxJKeuaWt42o",
@@ -49,7 +52,10 @@ const firebaseAuthConfig = {
     ScoresComponent,
     DeliberationTeamCardComponent,
     DeliberationTeamListComponent,
-    JudgingScoresListComponent
+    JudgingScoresListComponent,
+    NominationCardComponent,
+    NominationListComponent,
+    AwardListComponent
   ],
   imports: [
     BrowserModule,

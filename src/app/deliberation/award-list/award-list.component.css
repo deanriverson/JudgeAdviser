@@ -1,0 +1,15 @@
+.award-card {
+  background-color: #fff;
+  box-shadow: 0 2px 5px #aaa;
+  margin-bottom: 4px;
+  padding: 2px;
+}
+
+.award-desc {
+  font-size: 90%;
+  color: #888;
+}
+
+.award-winner {
+  font-size: 110%;
+}

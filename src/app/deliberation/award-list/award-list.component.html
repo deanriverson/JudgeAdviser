@@ -1,0 +1,25 @@
+<div>
+  <span>Awards</span>
+</div>
+
+<div [ngSwitch]="mode">
+  <div *ngSwitchCase="1">
+    <div class="award-card" *ngFor="let a of awards">
+      <div class="award-desc">{{a.description}}</div>
+      <div class="award-winner">{{a.winner || 'Unawarded'}}</div>
+    </div>
+
+    <div>
+      <button md-raised-button (click)="onEditList()">Edit</button>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="2">
+    <div class="award-card" *ngFor="let a of awards">
+      <md-input placeholder="{{a.description}}" [(ngModel)]="a.winner" style="width:100%;"></md-input>
+    </div>
+    <div>
+      <button md-raised-button (click)="onSaveList()">Save</button>
+    </div>
+  </div>
+</div>
