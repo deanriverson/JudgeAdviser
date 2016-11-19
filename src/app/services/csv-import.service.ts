@@ -25,11 +25,12 @@ export class CsvImportService {
         reject("Please drop only one file at a time.");
       }
 
-      if (dropFiles[0].type !== "text/csv") {
+      let csvFile = dropFiles[0];
+      if (csvFile.type && csvFile.type !== "text/csv" && csvFile.type !== 'application/vnd.ms-excel') {
         reject("Please drop a .csv file only. If that was a CSV file, give it the .csv extension.");
       }
 
-      resolve(dropFiles[0]);
+      resolve(csvFile);
     });
   }
 
